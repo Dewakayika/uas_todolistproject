@@ -16,6 +16,7 @@ public abstract class TaskItemDatabase : RoomDatabase()
         @Volatile
         private var INSTANCE: TaskItemDatabase? = null
 
+//blok sinkronisasi (synchronized) untuk menghindari pembuatan beberapa instance dalam waktu yang bersamaan
         fun getDatabase(context: Context): TaskItemDatabase
         {
             return INSTANCE ?: synchronized(this)

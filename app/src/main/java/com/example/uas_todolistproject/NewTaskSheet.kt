@@ -10,10 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.uas_todolistproject.databinding.FragmentNewTaskSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.time.LocalTime
-
+//digunakan untuk menampilkan formulir untuk menambahkan atau mengedit tugas baru.
 class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment()
 {
-    private lateinit var binding: FragmentNewTaskSheetBinding
+//    Deklarasi Variable
+    private lateinit var binding: FragmentNewTaskSheetBinding //Variabel yang akan digunakan untuk mengakses elemen antarmuka pengguna yang diikat menggunakan View Binding.
     private lateinit var taskViewModel: TaskViewModel
     private var dueTime: LocalTime? = null
 
@@ -46,7 +47,7 @@ class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment()
             openTimePicker()
         }
     }
-
+//Metode ini membuka dialog pemilih waktu (TimePicker) dan mengupdate dueTime sesuai dengan pilihan pengguna.
     private fun openTimePicker() {
         if(dueTime == null)
             dueTime = LocalTime.now()
@@ -59,7 +60,7 @@ class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment()
         dialog.show()
 
     }
-
+//Metode ini mengubah teks pada tombol waktu untuk menunjukkan waktu tenggat waktu yang dipilih.
     private fun updateTimeButtonText() {
         binding.timePickerButton.text = String.format("%02d:%02d",dueTime!!.hour,dueTime!!.minute)
     }
@@ -69,7 +70,7 @@ class NewTaskSheet(var taskItem: TaskItem?) : BottomSheetDialogFragment()
         return binding.root
     }
 
-
+//Metode ini dipanggil saat tombol "Save" ditekan. Ini mengambil informasi dari formulir, membuat objek TaskItem, dan menyimpannya melalui ViewModel (taskViewModel).
     private fun saveAction()
     {
         val name = binding.name.text.toString()
